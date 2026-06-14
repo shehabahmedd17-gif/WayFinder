@@ -1,0 +1,93 @@
+name: smart_nav
+description: Smart Navigation System for visually-impaired users in Egypt.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # ── State management ─────────────────────────────────────────────────────
+  # Riverpod 3.x — Notifier / AsyncNotifier API kept; StateProvider deprecated
+  # but still works for our small bool flags.
+  flutter_riverpod: ^3.0.0
+
+  # ── Camera ───────────────────────────────────────────────────────────────
+  # 0.12.x adds CameraX backend on Android; existing CameraController surface
+  # (initialize, startImageStream, stopImageStream, value, lockCaptureOrientation,
+  # CameraImage planes) is unchanged.
+  camera: ^0.12.0
+
+  # ── ML — on-device inference ─────────────────────────────────────────────
+  # 0.10.x referenced UnmodifiableUint8ListView which Dart removed in SDK 3.7+.
+  # 0.12.x is the current stable line.
+  tflite_flutter: ^0.12.1
+
+  # ── Location ─────────────────────────────────────────────────────────────
+  geolocator: ^14.0.0
+  permission_handler: ^12.0.0
+
+  # ── Audio ────────────────────────────────────────────────────────────────
+  flutter_tts: ^4.2.0
+  # speech_to_text 6.x referenced PluginRegistry.Registrar (legacy v1 embedding).
+  # 7.x targets v2 embedding only.
+  speech_to_text: ^7.3.0
+  # whisper_flutter_new is REMOVED — last published 2024-06-12 (23 months stale),
+  # required NDK 27+, and speech_to_text covers Egyptian-accented English well
+  # enough for v1. The original spec marked this as an acceptable fallback.
+
+  # ── Networking ───────────────────────────────────────────────────────────
+  http: ^1.6.0
+  dio: ^5.9.0
+
+  # ── OS integrations ──────────────────────────────────────────────────────
+  url_launcher: ^6.3.0
+  # Direct SMS send via Telephony API (Step F-3 follow-up). SOS uses this
+  # to silently dispatch the alert SMS — falls back to url_launcher if
+  # permission is denied or no SIM is present.
+  another_telephony: ^0.4.0
+  vibration: ^3.0.0
+  shared_preferences: ^2.5.0
+
+  # ── Data models (not yet used in code; safe to bump majors) ──────────────
+  freezed_annotation: ^3.0.0
+  json_annotation: ^4.9.0
+
+  # ── Image processing ─────────────────────────────────────────────────────
+  image: ^4.8.0
+
+  # ── FFI (native hot-paths) ──────────────────────────────────────────────
+  ffi: ^2.1.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.5.0
+  freezed: ^3.0.0
+  json_serializable: ^6.9.0
+  # Generates Android launcher mipmaps from a single source PNG.
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/models/
+    - assets/images/
+    - assets/icon/
+
+# Android launcher icon generation. The source PNG (amber compass on
+# black) becomes every mipmap density + the adaptive-icon foreground.
+# Background is solid black so the launcher draws an OLED-friendly tile
+# behind the foreground on Android 8+.
+# Re-run after changes:  dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/icon/wayfinder_logo.png"
+  min_sdk_android: 28
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: "assets/icon/wayfinder_logo.png"

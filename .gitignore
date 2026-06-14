@@ -1,0 +1,82 @@
+# ============================================================
+# SECRETS — NEVER COMMIT
+# ============================================================
+api_keys.txt
+**/google-services.json
+*.keystore
+*.jks
+android/key.properties
+android/local.properties
+
+# ============================================================
+# Flutter / Dart
+# ============================================================
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+*.iml
+
+# ============================================================
+# Android
+# ============================================================
+android/.gradle/
+android/captures/
+android/gradlew
+android/gradlew.bat
+android/gradle/wrapper/
+android/.idea/
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# ============================================================
+# iOS (not used but exclude if folder exists)
+# ============================================================
+ios/Pods/
+ios/Flutter/.last_build_id
+ios/Flutter/flutter_export_environment.sh
+
+# ============================================================
+# IDE / Editor
+# ============================================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ============================================================
+# OS
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================
+# Logs / Debug
+# ============================================================
+*.log
+logcat_output.txt
+flutter_*.log
+
+# ============================================================
+# Project-specific
+# ============================================================
+# ML model files — large binaries, downloaded separately (see README.md)
+assets/models/*.tflite
+assets/models/*.bin
+assets/models/*.pt
+# Stitch design reference (~4 MB zip of HTML/PNG mockups)
+design_reference/
+# Symbolication / obfuscation outputs
+app.*.symbols
+app.*.map.json
+# Project backup archives (never commit binary snapshots of the repo)
+wayfinder_before_*.zip
+*_backup_*.zip
+project_backup*.zip
