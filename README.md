@@ -56,6 +56,14 @@ Build:
 
 Install build\app\outputs\flutter-apk\app-debug.apk on your device.
 
+## Download ML Models
+
+The YOLO and MiDaS .tflite model files are not included in this 
+repository due to size constraints. Place these in `assets/models/`:
+
+- `yolov8n_float32.tflite` (6.4 MB) — from [Ultralytics](https://github.com/ultralytics/ultralytics)
+- `midas_small.tflite` (23 MB) — from [Intel ISL MiDaS](https://github.com/isl-org/MiDaS)
+
 ## Architecture
 
 - TTS Priority Coordinator: HIGH (obstacles) preempts MEDIUM
